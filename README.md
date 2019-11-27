@@ -15,7 +15,7 @@ We collected SVHN dataset containing 33402 for training and 13068 for testing. T
 
 After that, we converted the normal data annotations to Yolo annotation format using code from: http://guanghan.info/blog/en/my-works/train-yolo/
 But, however the code was wrong because it can produce negative value and we realized that the number of the annotation would be from 0 to 1. So, we fixed the formula after we read the Yolo paper. 
------ <class> <x_center> <y_center> <width> <height> -----
+<class x_center y_center width height>
 These annotations should be in the same folder with train images / test images.
 
 # Training
