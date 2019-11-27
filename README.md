@@ -14,7 +14,9 @@ OS 64 bit
 We collected SVHN dataset containing 33402 for training and 13068 for testing. Then, we extracted the annotation digitStruct.mat into normal data annotations.
 
 After that, we converted the normal data annotations to Yolo annotation format using code from: http://guanghan.info/blog/en/my-works/train-yolo/
-But, however the code was wrong because it can produce negative value and we realized that the number of the annotation would be from 0 to 1. So, we fixed the formula after we read the Yolo paper. These annotations should be in the same folder with train images / test images.
+But, however the code was wrong because it can produce negative value and we realized that the number of the annotation would be from 0 to 1. So, we fixed the formula after we read the Yolo paper. 
+<class> <x_center> <y_center> <width> <height>
+These annotations should be in the same folder with train images / test images.
 
 # Training
 We trained YoloV3 from: https://github.com/AlexeyAB/darknet
@@ -28,6 +30,7 @@ Generated anchor values:
 Further, we set the parameter of yolo-obj.cfg. We followed AlexeyAB’s instructions in parameter setting and we modified them.
  
 The class in obj.names is from 0 to 10 (since number 0 = 10) not 1 to 10 because yolo was only able to train from index 0. So, the class would be 11 not 10.
+
 Furthermore, we trained the data by using this command:
 ./darknet detector train data/obj.data data/yolo-obj.cfg data/darknet53.conv.74 -mjpeg_port 8090
 In this part, we used pretrained weight darknet53.conv.74 to get better result. For the model architecture, we used YoloV3.
