@@ -2,7 +2,9 @@
 
 # Github
 The full Github link would be in here: https://github.com/StephenEkaputra/SVHN-YOLOV3-CUSTOM
+
 We divided the code into 3 main folders: Data Preprocessing, Training, and Testing.
+
 Weight can be downloaded: https://drive.google.com/file/d/1K7tI4n95-yd4wDS_0NAtvMWqo3TPL1LR/view?usp=sharing
 
 # Computer
@@ -15,25 +17,34 @@ OS 64 bit
 We collected SVHN dataset containing 33402 for training and 13068 for testing. Then, we extracted the annotation digitStruct.mat into normal data annotations.
 
 After that, we converted the normal data annotations to Yolo annotation format using code from: http://guanghan.info/blog/en/my-works/train-yolo/
+
 But, however the code was wrong because it can produce negative value and we realized that the number of the annotation would be from 0 to 1. So, we fixed the formula after we read the Yolo paper. 
+
 [class x_center y_center width height]
+
 These annotations should be in the same folder with train images / test images.
 
 # Training
 We trained YoloV3 from: https://github.com/AlexeyAB/darknet
+
 The first thing to do is we make the file (setting the GPU=1, CUDNN=1). We used CUDA v10.1 and CuDNN to train faster.
 
 After that, we calculated the anchors by using command: 
 ./darknet detector calc_anchors data/obj.data -num_of_clusters 9 -width 512 -height 256 -show
+
 Then, we got the anchor values and replaced the anchors from yolo-obj.cfg. These anchor values were just a matter of size that fit well to be trained.
+
 Generated anchor values:
+
 29,67, 37,112, 57,112, 46,166, 64,150, 66,195, 85,166, 90,205, 121,204
+
 Further, we set the parameter of yolo-obj.cfg. We followed AlexeyAB’s instructions in parameter setting and we modified them.
  
 The class in obj.names is from 0 to 10 (since number 0 = 10) not 1 to 10 because yolo was only able to train from index 0. So, the class would be 11 not 10.
 
 Furthermore, we trained the data by using this command:
 ./darknet detector train data/obj.data data/yolo-obj.cfg data/darknet53.conv.74 -mjpeg_port 8090
+
 In this part, we used pretrained weight darknet53.conv.74 to get better result. For the model architecture, we used YoloV3.
 
 # Testing
