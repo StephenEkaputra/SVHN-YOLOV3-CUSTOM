@@ -3,6 +3,7 @@
 # Github
 The full Github link would be in here: https://github.com/StephenEkaputra/SVHN-YOLOV3-CUSTOM
 We divided the code into 3 main folders: Data Preprocessing, Training, and Testing.
+Weight can be downloaded: https://drive.google.com/file/d/1K7tI4n95-yd4wDS_0NAtvMWqo3TPL1LR/view?usp=sharing
 
 # Computer
 Ubuntu 16.04 LTS
